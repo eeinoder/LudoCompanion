@@ -202,7 +202,8 @@ button {
         display: none;
     }
     .navbar-container {
-        justify-content: space-between;
+        /* justify-content: space-between; */
+        justify-content: center;
     }
     .navbar-right-container {
         max-width: 180px;
