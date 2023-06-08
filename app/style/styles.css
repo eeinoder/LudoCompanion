@@ -1,0 +1,224 @@
+@font-face {
+    font-family: "DidactGothic-Regular";
+    src: url('./fonts/DidactGothic-Regular.ttf');
+}
+
+:root {
+    --gamergreen: #0dff64;
+    --gamerorange: rgb(255, 115, 0);
+    --gamergrey: rgb(54, 54, 54);
+    --testD4color: hsla(30,2476%,118%,1.0);
+    --offwhite: #dbcfb7; /* #ebe8e2 */
+    background-color: var(--offwhite);
+}
+
+.parent { 
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr); 
+    grid-template-rows: repeat(6, 15vh); 
+    grid-column-gap: 0.3rem;
+    grid-row-gap: 0.3rem;
+}
+.child {
+    /*border-style: none;*/
+    border: solid black 1px;
+    background-color: var(--gamergrey)
+}
+.navbar-container { 
+    grid-area: 1 / 1 / 2 / 6; 
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+    /*border-style: none;*/
+} 
+.navbar-right-container {
+    padding-top: 0.5vh;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 11vw;
+}
+.sidebar-container { 
+    grid-area: 2 / 1 / 7 / 2; 
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+} 
+.content-container { 
+    grid-area: 2 / 2 / 7 / 5; 
+} 
+.content-toolbar-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
+.dice-faces-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+}
+.rightbar-container {
+    grid-area: 2 / 5 / 7 / 6; 
+}
+.bottom-container {
+    /* grid-area: 6 / 2 / 7 / 5; */
+    display: none;
+}
+
+
+/* Buttons */
+button {
+    all: unset;
+    cursor: pointer;
+}
+.nav-button {
+    /* height: 5vh; */
+    color: grey;
+}
+.nav-button:hover {
+    border-bottom: solid grey 2px;
+}
+.nav-button:focus {
+    border-bottom: solid black 5px;
+    color: black;
+}
+.dice-button:hover {
+    border: solid grey;
+    border-radius: 4px;
+}
+.toolbar-button:hover {
+    border-bottom: solid grey 2px;
+}
+
+
+/* Dividers */
+.nav-divider {
+    font-size: 4rem;
+    color: grey;
+}
+
+
+/* Images */
+#logo-image {
+    max-height: 16vh;
+}
+#menu-image {
+    padding-top: 0.4vh;
+    scale: 1.4;
+}
+#pfp-image {
+    max-height: 5vh;
+}
+.dice-image {
+    height: 4rem;
+}
+
+
+/* "Dice Objects - i.e., faces that change number */
+.dice-face {
+    border: solid black 1px;
+    border-radius: 2vw;
+    background-color: black;
+    margin: 5px 5px;
+    color: white /* i.e. font color */
+}
+
+
+/* SVG image filter */
+.filter-d4 {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(30deg) brightness(118%) contrast(119%);
+}
+.filter-d6 {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(90deg) brightness(118%) contrast(119%);
+}
+.filter-d8 {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(135deg) brightness(118%) contrast(119%);
+}
+.filter-d10 {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(180deg) brightness(118%) contrast(119%);
+}
+.filter-d12 {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(225deg) brightness(118%) contrast(119%);
+}
+.filter-d20 {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(270deg) brightness(118%) contrast(119%);
+}
+.filter-dCustom {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(315deg) brightness(118%) contrast(119%);
+}
+.filter-logo {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(-20deg) brightness(118%) contrast(119%);
+}
+.filter-grey {
+    filter: brightness(0) saturate(100%) invert(0) sepia(0) saturate(0) hue-rotate(0deg) brightness(0.5) contrast(0);
+}
+
+
+/* Background themes */
+.paper-bg {
+    background-color: #000;
+    background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px), linear-gradient(#eee 0.1em, transparent 0.1em);
+    background-size: 100% 1.2em;
+}
+.dots-bg {
+    background: linear-gradient(90deg, var(--gamergrey) 21px, transparent 1%) center, linear-gradient(var(--gamergrey) 21px, transparent 1%) center, var(--offwhite);
+    background-size: 22px 22px;
+}
+.grid-bg {
+    background-image: linear-gradient(#0053ff 3.6px, transparent 3.6px), linear-gradient(90deg, #0053ff 3.6px, transparent 3.6px), linear-gradient(#0053ff 1.8px, transparent 1.8px), linear-gradient(90deg, #0053ff 1.8px, #f7f7f7 1.8px);
+    background-size: 90px 90px, 90px 90px, 18px 18px, 18px 18px;
+    background-position: -3.6px -3.6px, -3.6px -3.6px, -1.8px -1.8px, -1.8px -1.8px;
+}
+
+
+/* Styling Classes */
+.didact-font {
+    font-family: 'DidactGothic-Regular';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2rem;
+}
+
+.shadow {
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* MEDIA QUERIES */
+/* Note: specifying mobile layout below. Consider specifying mobile above and performing */
+/* media queries once webpage is expanded. */
+
+@media screen and (max-width:900px) {
+    .nav-divider {
+        display: none;
+    }
+    .nav-button {
+        display: none;
+    }
+    .navbar-container {
+        justify-content: space-between;
+    }
+    .navbar-right-container {
+        max-width: 180px;
+        width: 30vw;
+    }
+    .rightbar-container {
+        display: none;
+    }
+    .content-container {
+        grid-area: 2 / 2 / 6 / 6; 
+    }
+    .bottom-container {
+        display: flex;
+        grid-area: 6 / 2 / 7 / 6; 
+    }
+    #pfp-button {
+        padding-right: 5vh;
+    }
+}

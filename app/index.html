@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./style/styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="parent"> 
+        <div class="navbar-container child">
+            <img src="./assets/LudoLogo_reversed.svg" class="filter-grey" id="logo-image">
+            <span class="didact-font nav-divider"> | </span>
+            <button class="didact-font nav-button">Home</button>
+            <button class="didact-font nav-button">Dice+</button>
+            <button class="didact-font nav-button">Scores</button>
+            <button class="didact-font nav-button">About</button>
+            <button class="didact-font nav-button">Contact</button>
+            <span class="didact-font nav-divider"> | </span>
+            <div class="navbar-right-container">
+                <!-- TODO: get rid of this container, move menu icon above, before Logo -->
+                <button class="filter-grey" id="menu-button"><img src="assets/Hamburger_icon.svg" id="menu-image"></button>
+                <button class="filter-grey" id="pfp-button"><img src="assets/default_pfp.svg" id="pfp-image"></button>
+            </div>
+        </div>
+        <div class="sidebar-container child">
+            <button class="dice-button" id="d4-button" onclick="diceButtonClickHandler(this)"><img src="assets/dice_white_transparent/d4.svg" class="dice-image filter-d4"></button>
+            <button class="dice-button" id="d6-button" onclick="diceButtonClickHandler(this)"><img src="assets/dice_white_transparent/d6.svg" class="dice-image filter-d6"></button>
+            <button class="dice-button" id="d8-button" onclick="diceButtonClickHandler(this)"><img src="assets/dice_white_transparent/d8.svg" class="dice-image filter-d8"></button>
+            <button class="dice-button" id="d10-button" onclick="diceButtonClickHandler(this)"><img src="assets/dice_white_transparent/d10.svg" class="dice-image filter-d10"></button>
+            <button class="dice-button" id="d12-button" onclick="diceButtonClickHandler(this)"><img src="assets/dice_white_transparent/d12.svg" class="dice-image filter-d12"></button>
+            <button class="dice-button" id="d20-button" onclick="diceButtonClickHandler(this)"><img src="assets/dice_white_transparent/d20.svg" class="dice-image filter-d20"></button>
+            <button class="dice-button" id="dCustom-button" onclick="diceButtonClickHandler(this)"><img src="assets/dice_white_transparent/dCustom.svg" class="dice-image filter-dCustom"></button>
+        </div> 
+        <div class="content-container child dots-bg">
+            <div class="content-toolbar-container">
+                <button class="toolbar-button didact-font filter-grey" onclick="rollAllDice()">Roll</button>
+                <button class="toolbar-button didact-font filter-grey" onclick="undoButtonClickHandler()">Undo</button>
+                <button class="toolbar-button didact-font filter-grey" onclick="clearAllDice()">Clear</button>
+            </div>
+            <div class="dice-faces-container"></div>
+        </div> 
+        <div class="rightbar-container child"></div>
+        <div class="bottom-container child"> </div>
+    </div>
+    <script src="./scripts/main.js"></script>
+</body>
+</html>
