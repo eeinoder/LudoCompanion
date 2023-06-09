@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="./style/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,14 +36,34 @@
         </div> 
         <div class="content-container child dots-bg">
             <div class="content-toolbar-container">
-                <button class="toolbar-button didact-font filter-grey" onclick="rollAllDice()">Roll</button>
-                <button class="toolbar-button didact-font filter-grey" onclick="undoButtonClickHandler()">Undo</button>
-                <button class="toolbar-button didact-font filter-grey" onclick="clearAllDice()">Clear</button>
+                <button class="toolbar-button didact-font filter-d12" onclick="rollAllDice()">Roll</button>
+                <button class="toolbar-button didact-font filter-d20" onclick="undoButtonClickHandler()">Undo</button>
+                <button class="toolbar-button didact-font filter-dCustom" onclick="clearAllDice()">Clear</button>
             </div>
             <div class="dice-faces-container"></div>
         </div> 
-        <div class="rightbar-container child"></div>
-        <div class="bottom-container child"> </div>
+        <div class="rightbar-container child didact-font">
+            <div class="dice-results-title-container filter-grey">
+                <span id="dice-results-title">Results</span>
+                <button><img src="assets/trash.svg" id="trash-image"></button>
+            </div>
+            <div class="dice-results-container">
+                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
+                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
+                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
+                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
+                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-text-container didact-font">
+        <div class="bottom-text">
+            <span style="font-size: 25px">By: Nicolae Einoder</span>
+            <span class="didact-font"> | </span>
+            <a href="https://www.linkedin.com/in/nicolae-einoder-076645a6/"><i class="fa fa-linkedin-square" style="margin-left:7px"></i></a>
+            <span class="didact-font"> | </span>
+            <a href="https://github.com/eeinoder"><i class="fa fa-github" style="margin-left:7px"></i></a>
+        </div>
     </div>
     <script src="./scripts/main.js"></script>
 </body>
