@@ -12,13 +12,13 @@
     <div class="parent"> 
         <div class="navbar-container child">
             <img src="./assets/LudoLogo_reversed.svg" class="filter-grey" id="logo-image">
-            <span class="didact-font nav-divider"> | </span>
-            <button class="didact-font nav-button">Home</button>
-            <button class="didact-font nav-button">Dice+</button>
-            <button class="didact-font nav-button">Scores</button>
-            <button class="didact-font nav-button">About</button>
-            <button class="didact-font nav-button">Contact</button>
-            <span class="didact-font nav-divider" style="display:none"> | </span>
+            <span class="didact-font-2rem nav-divider"> | </span>
+            <button class="didact-font-2rem nav-button">Home</button>
+            <button class="didact-font-2rem nav-button">Dice+</button>
+            <button class="didact-font-2rem nav-button">Scores</button>
+            <button class="didact-font-2rem nav-button">About</button>
+            <button class="didact-font-2rem nav-button">Contact</button>
+            <span class="didact-font-2rem nav-divider" style="display:none"> | </span>
             <div class="navbar-right-container" style="display:none">
                 <!-- TODO: reset display:none, get rid of this container, move menu icon above, before Logo -->
                 <button class="filter-grey" id="menu-button"><img src="assets/Hamburger_icon.svg" id="menu-image"></button>
@@ -36,27 +36,26 @@
         </div> 
         <div class="content-container child dots-bg">
             <div class="content-toolbar-container">
-                <button class="toolbar-button didact-font filter-d12" onclick="rollAllDice()">Roll</button>
-                <button class="toolbar-button didact-font filter-d20" onclick="undoButtonClickHandler()">Undo</button>
-                <button class="toolbar-button didact-font filter-dCustom" onclick="clearAllDice()">Clear</button>
+                <button class="toolbar-button didact-font-2rem filter-d12" onclick="rollButtonClickHandler()">Roll</button>
+                <button class="toolbar-button didact-font-2rem filter-d20" onclick="undoButtonClickHandler()">Undo</button>
+                <button class="toolbar-button didact-font-2rem filter-dCustom" onclick="clearAllDice()">Clear</button>
             </div>
             <div class="dice-faces-container"></div>
         </div> 
-        <div class="rightbar-container child didact-font">
-            <div class="dice-results-title-container filter-grey">
+        <div class="rightbar-container child">
+            <div class="dice-results-title-container filter-grey didact-font-2rem">
                 <span id="dice-results-title">Results</span>
-                <button><img src="assets/trash.svg" id="trash-image"></button>
+                <button onclick="clearDiceResults()"><img src="assets/trash.svg" id="trash-image"></button>
             </div>
-            <div class="dice-results-container">
-                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
-                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
-                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
-                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
-                <span class="dice-result filter-d6">Roll 1 >> 5<br></span>
-            </div>
+            <div class="dice-results-container didact-font-1rem"></div>
         </div>
     </div>
-    <div class="bottom-text-container didact-font">
+    <div v-if="loading" class="spinner filter-grey hidden">
+        <div class="rect1"></div>
+        <div class="rect3"></div>
+        <div class="rect5"></div>
+    </div>
+    <div class="bottom-text-container didact-font-2rem">
         <div class="bottom-text">
             <span style="font-size: 25px">By: Nicolae Einoder</span>
             <span class="didact-font"> | </span>

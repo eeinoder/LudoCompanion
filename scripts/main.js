@@ -1,16 +1,21 @@
 // ----------- GLOBALS ------------//
 const contentContainer = document.querySelector(".content-container");
 const diceFacesContainer = document.querySelector(".dice-faces-container");
+const diceResultsContainer = document.querySelector(".dice-results-container");
+
 const colorMap = {"d4":"rgb(216,176,0)", "d6":"hsl(120,100.0%,47.1%)"
                 , "d8":"rgb(0,240,182)", "d10":"rgb(0,197,255)"
                 , "d12":"rgb(182,136,255)", "d20":"rgb(255,93,255)"
                 , "dCustom":"rgb(255,92,150)"}
+
 let isRollingMap = new Map();
+let rollNum = 0;
+let pendingDiceResultTotal = 0;
 let diceWidth;
 
 
 
-// ----------- RENDER COMPONENTS ------ //
+// ----------- RENDER COMPONENTS, ETC. ------ //
 
 function createAndRenderDiceButtons() {
 
@@ -32,14 +37,17 @@ function diceButtonClickHandler(button) {
     let buttonId = button.id;
     let diceName = buttonId.substring(0, buttonId.indexOf('-'));
     let newDice = addDiceToContainer(diceName);
-    updateDiceWidth();
+    refreshDiceDimensions();
     rollDice(newDice);
-    setDiceDimensions();
 }
 
 function diceFaceClickHandler(event) {
     removeDiceFromContainer(event.target);
     refreshDiceDimensions();
+}
+
+function rollButtonClickHandler() {
+    rollAllDice();
 }
 
 function undoButtonClickHandler() {
@@ -48,7 +56,9 @@ function undoButtonClickHandler() {
 }
 
 
+
 // ----------- HELPERS ---------------- //
+
 function refreshDiceDimensions() {
     updateDiceWidth();
     setDiceDimensions();
@@ -66,7 +76,7 @@ function addDiceToContainer(diceName) {
     newDice.addEventListener("click", diceFaceClickHandler);
     newDice.classList.add(diceName);
     newDice.classList.add('dice-face');
-    newDice.classList.add('didact-font');
+    newDice.classList.add('didact-font-2rem');
     //newDice.classList.add(diceColorFilter);
     newDice.classList.add('shadow');
     newDice.style.backgroundColor = colorMap[diceName];
@@ -107,6 +117,7 @@ function rollDice(diceElement) {
         if (cycles > 25) {
             isRollingMap.set(diceElement, false);
             diceElement.style.opacity = 1.0;
+            addToDiceResults(parseInt(diceElement.innerHTML));
             return;
         }
         setRandomDiceResult(diceElement);
@@ -127,6 +138,38 @@ function setRandomDiceResult(diceElement) {
     let result = multiplier * (1 + Math.floor(Math.random() * maxResult));
     diceElement.innerHTML = result + '';
 }
+
+function areAnyDiceRolling() {
+    for (const [dice, isDiceRolling] of isRollingMap.entries()) {
+        if (isDiceRolling) return true;
+    }
+    return false;
+}
+
+function addToDiceResults(result) {
+    pendingDiceResultTotal += result;
+    if (areAnyDiceRolling()) {
+        showResultLoading();
+        return;
+    }
+    hideResultLoading();
+    rollNum++;
+    let newResult = document.createElement("span");
+    newResult.innerHTML = 'Roll ' + rollNum + ' >> ' + pendingDiceResultTotal + '<br>';
+    newResult.classList.add("filter-d6");
+    newResult.classList.add("dice-result");
+    document.querySelector(".dice-results-container").appendChild(newResult);
+    pendingDiceResultTotal = 0;
+}
+
+function clearDiceResults() {
+    document.querySelector(".dice-results-container").innerHTML = '';
+    rollNum = 0;
+}
+
+
+
+// ------- FORMATTING DICE LAYOUT SCRIPT -------- //
 
 // Dynamically set width depending on viewport width and number of dice on table
 function setDiceDimensions() {
@@ -171,4 +214,28 @@ function getNewDiceWidth(diceFaces) {
 function updateDiceWidth() {
     const diceFaces = document.querySelectorAll(".dice-face");
     diceWidth = getNewDiceWidth(diceFaces);
+}
+
+
+
+// ---------- TOGGLE DISPLAY ------------ //
+
+function showResultLoading() {
+    var loadingElement = document.querySelector(".spinner");
+    loadingElement.classList.remove("hidden");
+    diceResultsContainer.style.opacity = 0.5;
+    positionLoadingHelper(loadingElement);
+}
+
+function hideResultLoading() {
+    diceResultsContainer.style.opacity = 1.0;
+    document.querySelector(".spinner").classList.add("hidden");
+}
+
+function positionLoadingHelper(loadingElement) {
+    var resultsContainerRect = diceResultsContainer.getBoundingClientRect();
+    let midX = (resultsContainerRect.left + resultsContainerRect.right)/2 - loadingElement.clientWidth/2 + 'px';
+    let midY = (resultsContainerRect.top + resultsContainerRect.bottom)/2 - loadingElement.clientHeight/2 + 'px';
+    loadingElement.style.left = midX;
+    loadingElement.style.top = midY;
 }
