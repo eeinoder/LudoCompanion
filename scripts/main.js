@@ -39,6 +39,7 @@ function diceButtonClickHandler(button) {
 
 function diceFaceClickHandler(event) {
     removeDiceFromContainer(event.target);
+    refreshDiceDimensions();
 }
 
 function undoButtonClickHandler() {
@@ -75,15 +76,18 @@ function addDiceToContainer(diceName) {
 }
 
 function clearAllDice() {
+    isRollingMap.clear();
     diceFacesContainer.textContent = '';
 }
 
 function removeLastDice() {
     if (diceFacesContainer.childElementCount === 0) return;
-    diceFacesContainer.removeChild(diceFacesContainer.lastElementChild);
+    let diceElement = diceFacesContainer.lastElementChild;
+    removeDiceFromContainer(diceElement);
 }
 
 function removeDiceFromContainer(diceElement) {
+    isRollingMap.delete(diceElement);
     diceElement.remove();
 }
 
