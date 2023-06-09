@@ -38,6 +38,7 @@
     display: flex;
     justify-content: space-evenly; 
     align-items: center;
+    overflow: hidden;
     /*border-style: none;*/
 } 
 .navbar-right-container {
@@ -152,7 +153,7 @@ button {
 
 
 /* Images */
-#logo-image {
+.logo-image {
     max-height: 16vh;
 }
 #menu-image {
@@ -172,6 +173,12 @@ button {
 }
 
 /* Text, Titles */
+.select-dice-prompt {
+    position: absolute;
+    padding-left: 50px;
+    padding-top: 0;
+    opacity: 0.4;
+}
 /*#dice-result {
     font-size: 1rem;
 }*/
@@ -370,5 +377,12 @@ button {
     }
     #pfp-button {
         padding-right: 5vh;
+    }
+    .temp-logo {
+        display: none;
+    }
+    .select-dice-prompt {
+        padding-top: 20vh;
+        padding-left: 5vw;
     }
 }

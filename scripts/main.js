@@ -37,12 +37,14 @@ function diceButtonClickHandler(button) {
     let buttonId = button.id;
     let diceName = buttonId.substring(0, buttonId.indexOf('-'));
     let newDice = addDiceToContainer(diceName);
+    toggleContentToolbar();
     refreshDiceDimensions();
     rollDice(newDice);
 }
 
 function diceFaceClickHandler(event) {
     removeDiceFromContainer(event.target);
+    toggleContentToolbar();
     refreshDiceDimensions();
 }
 
@@ -52,7 +54,13 @@ function rollButtonClickHandler() {
 
 function undoButtonClickHandler() {
     removeLastDice();
+    toggleContentToolbar();
     refreshDiceDimensions();
+}
+
+function clearButtonClickHandler() {
+    clearAllDice();
+    toggleContentToolbar();
 }
 
 
@@ -70,6 +78,10 @@ function refreshDiceDimensions() {
 
 // NOTE: implementing SUPER simplified version (no real animation or 3D)
 // "Dice roll" animation is rounded square div with quickly changing face value...
+
+function getNumDice() {
+    return document.querySelectorAll(".dice-face").length;
+}
 
 function addDiceToContainer(diceName) {
     let newDice = document.createElement("div");
@@ -238,4 +250,17 @@ function positionLoadingHelper(loadingElement) {
     let midY = (resultsContainerRect.top + resultsContainerRect.bottom)/2 - loadingElement.clientHeight/2 + 'px';
     loadingElement.style.left = midX;
     loadingElement.style.top = midY;
+}
+
+function toggleContentToolbar() {
+    let promptElement = document.querySelector('.select-dice-prompt');
+    let toolbarElement = document.querySelector('.content-toolbar-container');
+    if (getNumDice() === 0 && promptElement.classList.contains('hidden')) {
+        promptElement.classList.remove('hidden');
+        toolbarElement.classList.add('hidden');
+    }
+    else if (getNumDice() > 0 && !promptElement.classList.contains('hidden')) {
+        promptElement.classList.add('hidden');
+        toolbarElement.classList.remove('hidden');
+    }
 }

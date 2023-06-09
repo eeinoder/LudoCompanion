@@ -11,13 +11,19 @@
 <body>
     <div class="parent"> 
         <div class="navbar-container child">
-            <img src="./assets/LudoLogo_reversed.svg" class="filter-grey" id="logo-image">
-            <span class="didact-font-2rem nav-divider"> | </span>
-            <button class="didact-font-2rem nav-button">Home</button>
-            <button class="didact-font-2rem nav-button">Dice+</button>
-            <button class="didact-font-2rem nav-button">Scores</button>
-            <button class="didact-font-2rem nav-button">About</button>
-            <button class="didact-font-2rem nav-button">Contact</button>
+            <!-- TODO: get rid of multiple logo images after nav bar buttons work -->
+            <img src="./assets/LudoLogo_reversed.svg" class="logo-image filter-grey temp-logo">
+            <img src="./assets/LudoLogo_reversed.svg" class="logo-image filter-grey temp-logo">
+            <img src="./assets/LudoLogo_reversed.svg" class="logo-image filter-d10">
+            <img src="./assets/LudoLogo_reversed.svg" class="logo-image filter-grey temp-logo">
+            <img src="./assets/LudoLogo_reversed.svg" class="logo-image filter-grey temp-logo">
+            <!-- TODO: unhide nav buttons below when they have funtionality -->
+            <span class="didact-font-2rem nav-divider" style="display:none"> | </span>
+            <button class="didact-font-2rem nav-button" style="display:none">Home</button>
+            <button class="didact-font-2rem nav-button" style="display:none">Dice+</button>
+            <button class="didact-font-2rem nav-button" style="display:none">Scores</button>
+            <button class="didact-font-2rem nav-button" style="display:none">About</button>
+            <button class="didact-font-2rem nav-button" style="display:none">Contact</button>
             <span class="didact-font-2rem nav-divider" style="display:none"> | </span>
             <div class="navbar-right-container" style="display:none">
                 <!-- TODO: reset display:none, get rid of this container, move menu icon above, before Logo -->
@@ -35,10 +41,13 @@
             <button class="dice-button" id="dCustom-button" onclick="diceButtonClickHandler(this)"><img src="assets/dice_white_transparent/dCustom.svg" class="dice-image filter-dCustom"></button>
         </div> 
         <div class="content-container child dots-bg">
-            <div class="content-toolbar-container">
-                <button class="toolbar-button didact-font-2rem filter-d12" onclick="rollButtonClickHandler()">Roll</button>
-                <button class="toolbar-button didact-font-2rem filter-d20" onclick="undoButtonClickHandler()">Undo</button>
-                <button class="toolbar-button didact-font-2rem filter-dCustom" onclick="clearAllDice()">Clear</button>
+            <div class="select-dice-prompt didact-font-2rem">
+                <h2>Select A Die</h2>
+            </div>
+            <div class="content-toolbar-container didact-font-2rem hidden">
+                <button class="toolbar-button filter-d12" onclick="rollButtonClickHandler()">Roll</button>
+                <button class="toolbar-button filter-d20" onclick="undoButtonClickHandler()">Undo</button>
+                <button class="toolbar-button filter-dCustom" onclick="clearButtonClickHandler()">Clear</button>
             </div>
             <div class="dice-faces-container"></div>
         </div> 
