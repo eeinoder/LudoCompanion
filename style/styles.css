@@ -115,6 +115,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    outline: 1px solid blue !important;
+    opacity: 1 !important;
+    visibility: visible !important
 }
 
 
