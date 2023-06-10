@@ -171,6 +171,7 @@ function addToDiceResults(result) {
     newResult.classList.add("filter-d6");
     newResult.classList.add("dice-result");
     document.querySelector(".dice-results-container").appendChild(newResult);
+    newResult.scrollIntoView(); // auto-scroll results div so new result is shown
     pendingDiceResultTotal = 0;
 }
 
