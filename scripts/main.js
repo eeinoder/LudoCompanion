@@ -14,6 +14,13 @@ let pendingDiceResultTotal = 0;
 let diceWidth;
 
 
+// ------ ADD PLACEHOLDER D20 on pageload ----- //
+let newDice = addDiceToContainer('d20');
+newDice.innerHTML = '20';
+toggleContentToolbar();
+refreshDiceDimensions();
+
+
 
 // ----------- RENDER COMPONENTS, ETC. ------ //
 
@@ -98,8 +105,9 @@ function addDiceToContainer(diceName) {
 }
 
 function clearAllDice() {
-    isRollingMap.clear();
-    diceFacesContainer.textContent = '';
+    for (var child of diceFacesContainer.children) {
+        removeDiceFromContainer(child);
+    }
 }
 
 function removeLastDice() {
@@ -109,6 +117,7 @@ function removeLastDice() {
 }
 
 function removeDiceFromContainer(diceElement) {
+    if (areAnyDiceRolling()) return;
     isRollingMap.delete(diceElement);
     diceElement.remove();
 }
@@ -125,17 +134,19 @@ function rollDice(diceElement) {
     isRollingMap.set(diceElement, true);
     let cycles = 0;
     diceElement.style.opacity = 0.5;
-    setTimeout(function doSomething() {
+    disableToolbarButtons();
+    setTimeout(function genNewDiceResult() {
         if (cycles > 25) {
             isRollingMap.set(diceElement, false);
             diceElement.style.opacity = 1.0;
+            enableToolbarButtons();
             addToDiceResults(parseInt(diceElement.innerHTML));
             return;
         }
         setRandomDiceResult(diceElement);
         formatTextResult(diceElement);
         cycles++;
-        setTimeout(doSomething, 75);
+        setTimeout(genNewDiceResult, 75);
     }, 75);
 }
 
@@ -232,6 +243,25 @@ function updateDiceWidth() {
 
 
 // ---------- TOGGLE DISPLAY ------------ //
+function disableToolbarButtons() {
+    let toolbarButtons = document.querySelectorAll(".toolbar-button");
+    let buttonFilters = ['filter-d12', 'filter-d20', 'filter-dCustom'];
+    for (let i=0; i<toolbarButtons.length; i++) {
+        toolbarButtons[i].disabled = true;
+        toolbarButtons[i].classList.remove(buttonFilters[i]);
+        toolbarButtons[i].classList.add('filter-grey');
+    }
+}
+
+function enableToolbarButtons() {
+    let toolbarButtons = document.querySelectorAll(".toolbar-button");
+    let buttonFilters = ['filter-d12', 'filter-d20', 'filter-dCustom'];
+    for (let i=0; i<toolbarButtons.length; i++) {
+        toolbarButtons[i].disabled = false;
+        toolbarButtons[i].classList.remove('filter-grey');
+        toolbarButtons[i].classList.add(buttonFilters[i]);
+    }
+}
 
 function showResultLoading() {
     var loadingElement = document.querySelector(".spinner");
