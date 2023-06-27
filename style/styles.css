@@ -22,10 +22,6 @@
     --offwhite: #dbcfb7; /* #ebe8e2 */
     background-color: var(--offwhite);
 }
-body {
-    height: 100vh;
-    height: 100svh;
-}
 .parent { 
     display: grid; 
     grid-template-columns: repeat(5, 1fr); 

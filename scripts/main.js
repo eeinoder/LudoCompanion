@@ -105,9 +105,9 @@ function addDiceToContainer(diceName) {
 }
 
 function clearAllDice() {
-    for (var child of diceFacesContainer.children) {
-        removeDiceFromContainer(child);
-    }
+    if (areAnyDiceRolling()) return;
+    isRollingMap.clear();
+    diceFacesContainer.innerHTML = '';
 }
 
 function removeLastDice() {
@@ -254,6 +254,7 @@ function disableToolbarButtons() {
 }
 
 function enableToolbarButtons() {
+    if (areAnyDiceRolling()) return;
     let toolbarButtons = document.querySelectorAll(".toolbar-button");
     let buttonFilters = ['filter-d12', 'filter-d20', 'filter-dCustom'];
     for (let i=0; i<toolbarButtons.length; i++) {
